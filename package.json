@@ -1,0 +1,27 @@
+{
+  "name": "medium-feed",
+  "version": "0.0.1",
+  "description": "A simple utility to get article objects for any Medium user.",
+  "main": "dist/medium-feed.js",
+  "unpkg": "dist/medium-feed.min.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "git+https://github.com/ghosts/medium-feed.git",
+  "keywords": [
+    "medium",
+    "article",
+    "feed",
+    "medium",
+    "feed",
+    "medium",
+    "articles"
+  ],
+  "author": "Caden Sumner",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ghosts/medium-feed/issues"
+  },
+  "homepage": "https://github.com/ghosts/medium-feed#readme",
+  "private": false
+}
