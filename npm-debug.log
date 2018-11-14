@@ -1,0 +1,84 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/bin/nodejs', '/usr/bin/npm', 'publish', '--tag', 'beta' ]
+2 info using npm@3.5.2
+3 info using node@v4.2.6
+4 verbose publish [ '.' ]
+5 silly cache add args [ '.', null ]
+6 verbose cache add spec .
+7 silly cache add parsed spec Result {
+7 silly cache add   raw: '.',
+7 silly cache add   scope: null,
+7 silly cache add   name: null,
+7 silly cache add   rawSpec: '.',
+7 silly cache add   spec: '/mnt/c/Users/caden/Desktop/medium-feed',
+7 silly cache add   type: 'directory' }
+8 verbose addLocalDirectory /home/cjsumner/.npm/medium-feed/0.0.1/package.tgz not in flight; packing
+9 verbose makeDirectory /home/cjsumner/.npm creation not in flight; initializing
+10 silly makeDirectory /home/cjsumner/.npm uid: 1000 gid: 1000
+11 info lifecycle medium-feed@0.0.1~prepublish: medium-feed@0.0.1
+12 silly lifecycle medium-feed@0.0.1~prepublish: no script for prepublish, continuing
+13 verbose tar pack [ '/home/cjsumner/.npm/medium-feed/0.0.1/package.tgz',
+13 verbose tar pack   '/mnt/c/Users/caden/Desktop/medium-feed' ]
+14 verbose tarball /home/cjsumner/.npm/medium-feed/0.0.1/package.tgz
+15 verbose folder /mnt/c/Users/caden/Desktop/medium-feed
+16 verbose addLocalTarball adding from inside cache /home/cjsumner/.npm/medium-feed/0.0.1/package.tgz
+17 silly cache afterAdd medium-feed@0.0.1
+18 verbose afterAdd /home/cjsumner/.npm/medium-feed/0.0.1/package/package.json not in flight; writing
+19 verbose afterAdd /home/cjsumner/.npm/medium-feed/0.0.1/package/package.json written
+20 silly publish { name: 'medium-feed',
+20 silly publish   version: '0.0.1',
+20 silly publish   description: 'A simple utility to get article objects for any Medium user.',
+20 silly publish   main: 'dist/medium-feed.js',
+20 silly publish   unpkg: 'dist/medium-feed.min.js',
+20 silly publish   scripts: { test: 'echo "Error: no test specified" && exit 1' },
+20 silly publish   repository:
+20 silly publish    { type: 'git',
+20 silly publish      url: 'git+https://github.com/ghosts/medium-feed.git' },
+20 silly publish   keywords:
+20 silly publish    [ 'medium',
+20 silly publish      'article',
+20 silly publish      'feed',
+20 silly publish      'medium',
+20 silly publish      'feed',
+20 silly publish      'medium',
+20 silly publish      'articles' ],
+20 silly publish   author: { name: 'Caden Sumner' },
+20 silly publish   license: 'MIT',
+20 silly publish   bugs: { url: 'https://github.com/ghosts/medium-feed/issues' },
+20 silly publish   homepage: 'https://github.com/ghosts/medium-feed#readme',
+20 silly publish   private: false,
+20 silly publish   devDependencies: { gulp: '^4.0.0', 'gulp-minify': '^3.1.0' },
+20 silly publish   dependencies: {},
+20 silly publish   readme: '# Medium-Feed\r\nA simple utility to get article objects for any Medium user.\r\n\r\n[Demo & Documentation](https://ghosts.github.io/medium-feed/ "Medium-Feed Documentation")\r\n',
+20 silly publish   readmeFilename: 'README.md',
+20 silly publish   gitHead: 'bc7a0e740ec0de8fd82163362cf2340ad944b7a6',
+20 silly publish   _id: 'medium-feed@0.0.1',
+20 silly publish   _shasum: 'a0a1e058b6edfb9ed19d19ba4873d896168cb0c0',
+20 silly publish   _from: '.' }
+21 verbose getPublishConfig undefined
+22 silly mapToRegistry name medium-feed
+23 silly mapToRegistry using default registry
+24 silly mapToRegistry registry https://registry.npmjs.org/
+25 silly mapToRegistry uri https://registry.npmjs.org/medium-feed
+26 verbose publish registryBase https://registry.npmjs.org/
+27 silly publish uploading /home/cjsumner/.npm/medium-feed/0.0.1/package.tgz
+28 verbose stack Error: auth required for publishing
+28 verbose stack     at CachingRegistryClient.publish (/usr/share/npm/node_modules/npm-registry-client/lib/publish.js:30:14)
+28 verbose stack     at /usr/share/npm/lib/publish.js:137:14
+28 verbose stack     at mapToRegistry (/usr/share/npm/lib/utils/map-to-registry.js:55:3)
+28 verbose stack     at publish_ (/usr/share/npm/lib/publish.js:106:3)
+28 verbose stack     at Array.<anonymous> (/usr/share/npm/node_modules/slide/lib/bind-actor.js:15:8)
+28 verbose stack     at LOOP (/usr/share/npm/node_modules/slide/lib/chain.js:15:14)
+28 verbose stack     at LOOP (/usr/share/npm/node_modules/slide/lib/chain.js:14:28)
+28 verbose stack     at chain (/usr/share/npm/node_modules/slide/lib/chain.js:20:5)
+28 verbose stack     at /usr/share/npm/lib/publish.js:72:5
+28 verbose stack     at RES (/usr/share/npm/node_modules/inflight/inflight.js:23:14)
+29 verbose cwd /mnt/c/Users/caden/Desktop/medium-feed
+30 error Linux 4.4.0-17763-Microsoft
+31 error argv "/usr/bin/nodejs" "/usr/bin/npm" "publish" "--tag" "beta"
+32 error node v4.2.6
+33 error npm  v3.5.2
+34 error code ENEEDAUTH
+35 error need auth auth required for publishing
+36 error need auth You need to authorize this machine using `npm adduser`
+37 verbose exit [ 1, true ]
