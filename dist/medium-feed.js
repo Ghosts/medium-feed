@@ -2,14 +2,13 @@ var MediumFeed = function(options) {
   options = options || {};
   this.username = options.username || null;
   this.development = options.development || false;
-  this.articles = [];
   this.author = null;
 };
 
 var MediumAuthor = function(author) {
     author = author || {};
     this.imageUrl = author.imageUrl || null;
-    this.userName = author.userName || null;
+    this.username = author.username || null;
     this.name = author.name || null;
 }
 
@@ -23,17 +22,17 @@ var MediumArticle = function(article) {
 }
 
 MediumFeed.prototype = {
-  getFeed: function(username) {
-    if (!username && !this.username) {
+  getFeed: function(u) {
+    if (!u && !this.username) {
       console.error("Error: Please check that the username is correct.");
       return;
-    }
-    if (!username) {
-      username = this.username;
+    } 
+    else if(u) {
+        this.username = u;
     }
     var xhr = new XMLHttpRequest();
     var req = "GET";
-    var url = "https://medium.com/feed/@" + username;
+    var url = "https://medium.com/feed/@" + this.username;
     if(this.development) {
         var host = location.hostname;
         if (host === "localhost" || host === "127.0.0.1" || host === "") {
@@ -54,7 +53,9 @@ MediumFeed.prototype = {
             if(xhr.status == 200){
                 var xml = xhr.responseXML;
                 t.author = new MediumAuthor({
-                    imageUrl: xml.getElementsByTagName("url")[0].childNodes[0].nodeValue
+                    imageUrl: xml.getElementsByTagName("url")[0].childNodes[0].nodeValue,
+                    username: t.username,
+                    name: xml.getElementsByTagName("title")[0].childNodes[0].nodeValue.match(/(?<=by\s+).*?(?=\s+on)/gs).toString()
                 });
             }
         }
