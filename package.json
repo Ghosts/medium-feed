@@ -1,6 +1,6 @@
 {
   "name": "medium-feed",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "A simple utility to get article objects for any Medium user.",
   "main": "dist/medium-feed.js",
   "unpkg": "dist/medium-feed.min.js",
@@ -25,6 +25,12 @@
   "homepage": "https://github.com/ghosts/medium-feed#readme",
   "private": false,
   "devDependencies": {
+    "eslint": "^5.9.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-node": "^8.0.0",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-standard": "^4.0.0",
     "gulp": "^4.0.0",
     "gulp-minify": "^3.1.0"
   },
