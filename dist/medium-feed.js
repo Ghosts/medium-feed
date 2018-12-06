@@ -1,16 +1,16 @@
-var MediumFeed = function(options) {
+let MediumFeed = function(options) {
   options = options || {};
   this.development = options.development || false;
 };
 
-var MediumAuthor = function(author) {
+let MediumAuthor = function(author) {
   author = author || {};
   this.imageUrl = author.imageUrl || null;
   this.username = author.username || null;
   this.name = author.name || null;
 };
 
-var MediumArticle = function(article) {
+let MediumArticle = function(article) {
   article = article || {};
   this.title = article.title || null;
   this.link = article.link || null;
@@ -20,19 +20,19 @@ var MediumArticle = function(article) {
 };
 
 MediumFeed.prototype = (function() {
-    var baseUrl = "https://medoum.com/feed/";
-    var devUrl = "https://cors-anywhere.herokuapp.com/";
-    function getArticles(feedUrl, callback) {
-        var articles = [];
-        var async = callback !== false;
-        if (this.development) {
-            var host = location.hostname;
+    let baseUrl = "https://medium.com/feed";
+    let devUrl = "https://cors-anywhere.herokuapp.com/";
+    function getArticles(feedUrl, feedObject, callback) {
+        let articles = [];
+        let async = callback !== false;
+        if (feedObject.development) { // Using "this" here will return the window object, not the feed object, thus the need of getting the object as an argument
+            let host = location.hostname;
             if (host === "localhost" || host === "127.0.0.1" || host === "") {
-            url = devUrl + feedUrl;
+              url = devUrl + feedUrl;
             }
         }
-        var xhr = new XMLHttpRequest();
-        var req = "GET";
+        let xhr = new XMLHttpRequest();
+        let req = "GET";
         if ("withCredentials" in xhr) {
             xhr.open(req, url, async);
         } else if (typeof XDomainRequest != "undefined") {
@@ -41,13 +41,14 @@ MediumFeed.prototype = (function() {
         } else {
             console.error("Error: CORS not supported.");
         }
-        var t = this;
         xhr.onload = function() {
-            if (xhr.readyState == 4) {
+            if (xhr.readyState == xhr.DONE) {
                 if (xhr.status == 200) {
-                    var xml = xhr.responseXML;
+                    let xml = xhr.responseXML;
                     parseArticles(xml, articles);
-                    callback(articles);
+                    if (callback) {
+                      callback(articles);
+                    }
                 }
             }
         };
@@ -58,31 +59,39 @@ MediumFeed.prototype = (function() {
         return articles;
     }
 
-    function parseArticles(xml, articles){
-
+    function parseArticles(xml, articles) {
+      let items = xml.getElementsByTagName("item");
+      for ( let i = 0; i < items.length; i++ ) {
+        let article = new Object();
+        article.title = items[i].getElementsByTagName("title")[0].childNodes[0].nodeValue;
+        article.link = items[i].getElementsByTagName("link")[0].childNodes[0].nodeValue;
+        article.creator = items[i].getElementsByTagName("dc:creator")[0].childNodes[0].nodeValue;
+        article.pubDate = items[i].getElementsByTagName("pubDate")[0].childNodes[0].nodeValue;
+        articles.push(article);
+      }
     }
 
     return {
         getUserFeed: function(userName, callback) {
-            if (!username) {
+            if (!userName) {
                 console.error("Error: Please pass a username.");
                 return;
             }
-            return getArticles(`${baseUrl}/@${userName}`, callback);
+            return getArticles(`${baseUrl}/@${userName}`, this, callback);
         },
         getTopicFeed: function(topic, callback) {
             if (!topic) {
                 console.error("Error: Please pass a topic.");
                 return;
             }
-            return getArticles(`${baseUrl}/topic/${topic}`, callback);
+            return getArticles(`${baseUrl}/topic/${topic}`, this, callback);
         },
         getTagFeed: function(tag, callback) {
             if (!tag) {
                 console.error("Error: Please pass a tag.");
                 return;
             }
-            return getArticles(`${baseUrl}/tag/${tag}`, callback);
+            return getArticles(`${baseUrl}/tag/${tag}`, this, callback);
         }
     };
 })();
