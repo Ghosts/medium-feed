@@ -24,11 +24,11 @@
   </head>
   <body>
     <div id="information">
-      <div class="container container-large">
+      <div class="container container-medium">
         <div class="col col-sm-6">
           <div class="panel">
             <div class="panel-head">
-              <h2 class="panel-title">Medium-Feed</h2>
+              <h2 class="panel-title">📰 Medium-Feed 👀</h2>
             </div>
             <div class="panel-body">
               <p>
@@ -81,14 +81,103 @@ mediumFeed.getUserFeed("caden", alertCount); //Pass a callback as second param</
             </div>
           </div>
         </div>
+        <div id="demo">
+          <div class="container container-medium">
+            <div class="col col-12">
+              <div class="panel">
+                <div class="panel-head">
+                  <h2 class="panel-title">Demo & Final Notes</h2>
+                </div>
+                <div class="panel-body">
+                  <p>Please note: medium-feed makes <b>no</b> assumptions on your styling and therefore only returns what the Medium api gives us.
+                  However, Medium does return some articles with styling, you can attempt to override their styles using the following css attributes
+                  but there is <em>no guarantee</em> that these will be stable or will not change in the future.
+                  </p>
+                  <pre><code class="language-css">/* the containing div for medium-feed-snippet & medium-feed-link */
+.medium-feed-item{}
+/* the image (often feature image) */
+.medium-feed-image{}
+/* the snippet text of the article */
+.medium-feed-snippet{} 
+/* a link to continue reading on Medium */
+.medium-feed-link{} 
+</code></pre>
+                <br/>
+                  <p>Some final notes: getUserFeed() returns more 'content' (potentially the full article) 
+                  than topics/tags, and returns HTML without the Medium css mentioned above.
+                  <br/> 
+                  I recommend truncating the retunred content if you just want a 'snippet', and applying your own HTML-element based css as needed.</p>
+                <br/>
+                  <p>Below is the <b>topic</b> feed for 'technology' rendered with simple styling.</p>
+                </div>
+              </div>
+              <br/>
+              <hr/>
+              <br/>
+            </div>
+          <div id="demo-articles" class="container container-small"></div>
       </div>
     </div>
     <div class="container">
-      <div class="col col-sm-12">
+      <div class="col col-sm-12 coffee">
         <a href="https://www.buymeacoffee.com/caden" target="_blank"
           ><img src="https://i.imgur.com/I80eQwg.png"
         /></a>
       </div>
     </div>
   </body>
+  <script>
+    document.onreadystatechange = function () {
+        if (document.readyState == "interactive") {
+          let _mediumFeed = new MediumFeed();
+          _mediumFeed.development = true;
+          let a = _mediumFeed.getTopicFeed('technology');
+          a.forEach(article => {
+            let n = document.createElement('div');
+            n.innerHTML = `
+                <div class="panel">
+                  <div class="panel-head">
+                    <h2 class="panel-title">${article.title}</h2>
+                  </div>
+                  <div class="panel-body">
+                      <p class="article">${article.content}</p>
+                      <a href="${article.link}" target="_blank" class="read-medium button button-primary">👀 Read on Medium 📃</a>
+                  </div>
+              </div>
+            `;
+            document.getElementById('demo-articles').appendChild(n);
+          })
+        }
+      }
+  </script>
+  <style>
+    /* Begin Medium-Feed Demo Styling */
+    .medium-feed-image img {
+      height: auto;
+      width: 100%;
+      max-height: 300px;
+      object-fit: cover;
+    }
+    .medium-feed-link {
+      display: none;
+    }
+    .read-medium {
+      display: block;
+      text-align: center;
+    }
+    #demo-articles div .panel .panel-body {
+      padding-top: 0;
+      margin-top: 0;
+    }
+    #demo-articles div .panel .panel-head {
+      padding-bottom: 0;
+      margin-bottom: 0;
+    }
+    /* End Medium-Feed Demo Styling */
+
+    .coffee {
+      text-align: center;
+      margin: 0 auto;
+    }
+  </style>
 </html>
