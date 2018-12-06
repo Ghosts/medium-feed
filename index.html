@@ -51,9 +51,9 @@
             <div class="panel-body">
               <h4>Initialize a feed:</h4>
               <pre><code class="language-javascript">var mediumFeed = new MediumFeed();
-mediumFeed.development = true; //Optionally enable development mode for a CORS proxy
+mediumFeed.useProxy = true; //Optionally enable a CORS proxy for local development
 
-var mediumFeed = new MediumFeed({development: true}); //Enables a CORS proxy for localhost development via options object
+var mediumFeed = new MediumFeed({useProxy: true}); //Enables a CORS proxy for localhost development via options object
 </code></pre>
               <br />
               <h4>Get articles:</h4>
