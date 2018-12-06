@@ -1,6 +1,6 @@
 {
   "name": "medium-feed",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "A simple & small utility to get article objects for any Medium user.",
   "main": "dist/medium-feed.js",
   "unpkg": "dist/medium-feed.min.js",
