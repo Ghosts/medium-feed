@@ -130,7 +130,6 @@ mediumFeed.getUserFeed("caden", alertCount); //Pass a callback as second param</
     document.onreadystatechange = function () {
         if (document.readyState == "interactive") {
           let _mediumFeed = new MediumFeed();
-          _mediumFeed.development = true;
           let a = _mediumFeed.getTopicFeed('technology');
           a.forEach(article => {
             let n = document.createElement('div');
