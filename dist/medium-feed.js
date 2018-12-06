@@ -3,10 +3,10 @@ class MediumFeed {
     this._baseUrl = 'https://medium.com/feed'
     this._devUrl = 'https://cors-anywhere.herokuapp.com/'
     options = options || {}
-    this.development = options.development || false
+    this.useProxy = options.useProxy || false
   }
 
-  getArticles (feedUrl, feedObject, callback, type) {
+  getArticles (feedUrl, callback, type) {
     const _parseArticles = function (xml, articles, type) {
       console.log(xml)
       let items = xml.getElementsByTagName('item')
@@ -53,18 +53,14 @@ class MediumFeed {
             })
           return categories
         })()
-
         articles.push(new MediumArticle(article))
       }
     }
     let articles = []
     let async = callback !== undefined
-    let url = null
-    if (feedObject.development) {
-      let host = window.location.hostname
-      if (host === 'localhost' || host === '127.0.0.1' || host === '') {
-        url = this._devUrl + feedUrl
-      }
+    let url = this.feedUrl
+    if (this.useProxy) {
+      url = this._devUrl + feedUrl
     }
     let xhr = new XMLHttpRequest()
     let req = 'GET'
@@ -81,14 +77,11 @@ class MediumFeed {
         if (xhr.status === 200) {
           let xml = xhr.responseXML
           _parseArticles(xml, articles, type)
-          if (callback) {
+          if (async) {
             callback(articles)
           }
         }
       }
-    }
-    xhr.onerror = function () {
-      console.error('Error: Request failed.')
     }
     xhr.send()
     return articles
@@ -99,12 +92,7 @@ class MediumFeed {
       console.error('Error: Please pass a username.', 'user')
       return
     }
-    return this.getArticles(
-      `${this._baseUrl}/@${userName}`,
-      this,
-      callback,
-      'user'
-    )
+    return this.getArticles(`${this._baseUrl}/@${userName}`, callback, 'user')
   }
 
   getTopicFeed (topic, callback) {
@@ -114,7 +102,6 @@ class MediumFeed {
     }
     return this.getArticles(
       `${this._baseUrl}/topic/${topic}`,
-      this,
       callback,
       'topic'
     )
@@ -125,12 +112,7 @@ class MediumFeed {
       console.error('Error: Please pass a tag.')
       return
     }
-    return this.getArticles(
-      `${this._baseUrl}/tag/${tag}`,
-      this,
-      callback,
-      'tag'
-    )
+    return this.getArticles(`${this._baseUrl}/tag/${tag}`, callback, 'tag')
   }
 }
 
