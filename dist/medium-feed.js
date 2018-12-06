@@ -20,7 +20,7 @@ let MediumArticle = function(article) {
 };
 
 MediumFeed.prototype = (function() {
-    let baseUrl = "https://medium.com/feed";
+    let baseUrl = "https://medium.com/feed/";
     let devUrl = "https://cors-anywhere.herokuapp.com/";
     function getArticles(feedUrl, feedObject, callback) {
         let articles = [];
