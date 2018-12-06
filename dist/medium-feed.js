@@ -1,7 +1,7 @@
 class MediumFeed {
   constructor (options) {
-    this.baseUrl = 'https://medium.com/feed'
-    this.devUrl = 'https://cors-anywhere.herokuapp.com/'
+    this._baseUrl = 'https://medium.com/feed'
+    this._devUrl = 'https://cors-anywhere.herokuapp.com/'
     options = options || {}
     this.development = options.development || false
   }
@@ -23,9 +23,9 @@ class MediumFeed {
           'dc:creator'
         )[0].childNodes[0].nodeValue
 
-        article.pubDate = items[i].getElementsByTagName(
-          'pubDate'
-        )[0].childNodes[0].nodeValue
+        article.pubDate = new Date(
+          items[i].getElementsByTagName('pubDate')[0].childNodes[0].nodeValue
+        )
 
         article.content = items[i].getElementsByTagName(
           'content:encoded'
@@ -50,7 +50,7 @@ class MediumFeed {
     if (feedObject.development) {
       let host = window.location.hostname
       if (host === 'localhost' || host === '127.0.0.1' || host === '') {
-        url = this.devUrl + feedUrl
+        url = this._devUrl + feedUrl
       }
     }
     let xhr = new XMLHttpRequest()
@@ -86,7 +86,7 @@ class MediumFeed {
       console.error('Error: Please pass a username.')
       return
     }
-    return this.getArticles(`${this.baseUrl}/@${userName}`, this, callback)
+    return this.getArticles(`${this._baseUrl}/@${userName}`, this, callback)
   }
 
   getTopicFeed (topic, callback) {
@@ -94,7 +94,7 @@ class MediumFeed {
       console.error('Error: Please pass a topic.')
       return
     }
-    return this.getArticles(`${this.baseUrl}/topic/${topic}`, this, callback)
+    return this.getArticles(`${this._baseUrl}/topic/${topic}`, this, callback)
   }
 
   getTagFeed (tag, callback) {
@@ -102,7 +102,7 @@ class MediumFeed {
       console.error('Error: Please pass a tag.')
       return
     }
-    return this.getArticles(`${this.baseUrl}/tag/${tag}`, this, callback)
+    return this.getArticles(`${this._baseUrl}/tag/${tag}`, this, callback)
   }
 }
 

@@ -1,6 +1,6 @@
 {
   "name": "medium-feed",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A simple utility to get article objects for any Medium user.",
   "main": "dist/medium-feed.js",
   "unpkg": "dist/medium-feed.min.js",
@@ -12,9 +12,7 @@
     "medium",
     "article",
     "feed",
-    "medium",
-    "feed",
-    "medium",
+    "async",
     "articles"
   ],
   "author": "Caden Sumner",

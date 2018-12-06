@@ -51,13 +51,33 @@
             <div class="panel-body">
               <h4>Initialize a feed:</h4>
               <pre><code class="language-javascript">var mediumFeed = new MediumFeed();
-var mediumFeed = new MediumFeed({development: true}); //Enables a CORS proxy for localhost development
+mediumFeed.development = true; //Optionally enable development mode for a CORS proxy
+
+var mediumFeed = new MediumFeed({development: true}); //Enables a CORS proxy for localhost development via options object
 </code></pre>
               <br />
               <h4>Get articles:</h4>
               <pre><code class="language-javascript">mediumFeed.getUserFeed("caden"); //Pass username of the feed you want
 mediumFeed.getTopicFeed("technology"); //Pass topic (see: https://medium.com/topics)
-mediumFeed.getTagFeed("reactjs"); //Pass tag to get feed for</code></pre>
+mediumFeed.getTagFeed("reactjs"); //Pass a specific tag</code></pre>
+
+              <br />
+              <h4>Asynchronous:</h4>
+              <pre><code class="language-javascript">function alertCount(articles){alert(articles.length)} // function to print # of articles returned
+mediumFeed.getUserFeed("caden", alertCount); //Pass a callback as second param</code></pre>
+
+              <br />
+              <h4>MediumArticle:</h4>
+              The MediumFeed functions return arrays of "MediumArticle" objects
+              which contain the following (if available):
+              <pre><code class="language-javascript">class MediumArticle {
+  title //String
+  link //String
+  creator //String
+  pubDate //Date
+  content //String
+  categories //Array of Strings
+}</code></pre>
             </div>
           </div>
         </div>
