@@ -17,7 +17,7 @@
     />
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.15.0/themes/prism-twilight.min.css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.15.0/themes/prism.min.css"
     />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.15.0/prism.min.js"></script>
     <script src="lib/medium-feed.js" type="text/javascript"></script>
@@ -37,14 +37,24 @@
                 feeds. <br />
                 Additionally allows for both synchronous & asynchronous usage,
                 and a CORS proxy for local development.
-              </p>
+                </p>
+                <p>
+                Minified size: <b>2KB</b>
+                <br/>
+                Dependencies: <b>0</b>
+                </p>
+                <p>
+                <em>(Still not in 1.0 release - 🐞 reports & 💬 feedback appreciated!)</em>
+                <br/>
+                <a href="#demo-articles">Jump straight to the demo ➡</a>
+                </p>
             </div>
           </div>
         </div>
       </div>
     </div>
     <div id="usage">
-      <div class="container container-large">
+      <div class="container container-medium">
         <div class="col col-12">
           <div class="panel">
             <div class="panel-head"><h2 class="panel-title">Usage</h2></div>
@@ -90,7 +100,8 @@ mediumFeed.getUserFeed("caden", alertCount); //Pass a callback as second param</
                 </div>
                 <div class="panel-body">
                   <p>Please note: medium-feed makes <b>no</b> assumptions on your styling and therefore only returns what the Medium api gives us.
-                  However, Medium does return some articles with styling, you can attempt to override their styles using the following css attributes
+                  This gives you unlimited freedom to how you display or integrate articles from any Medium source.
+                  However... Medium does return some articles with styling. You can attempt to override their styles using the following css attributes
                   but there is <em>no guarantee</em> that these will be stable or will not change in the future.
                   </p>
                   <pre><code class="language-css">/* the containing div for medium-feed-snippet & medium-feed-link */
