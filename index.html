@@ -129,11 +129,14 @@ mediumFeed.getUserFeed("caden", alertCount); //Pass a callback as second param</
   <script>
     document.onreadystatechange = function () {
         if (document.readyState == "interactive") {
-          let _mediumFeed = new MediumFeed();
-          let a = _mediumFeed.getTopicFeed('technology');
-          a.forEach(article => {
-            let n = document.createElement('div');
-            n.innerHTML = `
+          let _mediumFeed = new MediumFeed({useProxy: true});
+          _mediumFeed.getTopicFeed('technology', formatArticles);
+        }
+      }
+    function formatArticles(a) {
+      a.forEach(article => {
+        let n = document.createElement('div');
+        n.innerHTML = `
                 <div class="panel">
                   <div class="panel-head">
                     <h2 class="panel-title">${article.title}</h2>
@@ -144,10 +147,9 @@ mediumFeed.getUserFeed("caden", alertCount); //Pass a callback as second param</
                   </div>
               </div>
             `;
-            document.getElementById('demo-articles').appendChild(n);
-          })
-        }
-      }
+        document.getElementById('demo-articles').appendChild(n);
+      })
+    }
   </script>
   <style>
     /* Begin Medium-Feed Demo Styling */
