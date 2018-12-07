@@ -127,6 +127,9 @@ mediumFeed.getUserFeed("caden", alertCount); //Pass a callback as second param</
               <br/>
               <hr/>
               <br/>
+              <input id="tag-input" type="text" placeholder="Enter a tag" />
+              <button class="button" onClick="refreshArticles()">Refresh Articles</button>
+              <br/>
             </div>
           <div id="demo-articles" class="container container-small"></div>
       </div>
@@ -140,12 +143,24 @@ mediumFeed.getUserFeed("caden", alertCount); //Pass a callback as second param</
     </div>
   </body>
   <script>
+    let _mediumFeed = new MediumFeed({ useProxy: true });
+    function refreshArticles() {
+      document.getElementById('demo-articles').innerHTML = '';
+      let tag = document.getElementById('tag-input').value;
+      if(tag) {
+        _mediumFeed.getTagFeed(tag, formatArticles);
+
+      } else {
+        _mediumFeed.getTopicFeed('technology', formatArticles);
+      }
+    }
+
     document.onreadystatechange = function () {
         if (document.readyState == "interactive") {
-          let _mediumFeed = new MediumFeed({useProxy: true});
-          _mediumFeed.getTopicFeed('technology', formatArticles);
+          refreshArticles();
         }
       }
+
     function formatArticles(a) {
       a.forEach(article => {
         let n = document.createElement('div');
