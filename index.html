@@ -149,6 +149,16 @@ mediumFeed.getUserFeed("caden", alertCount); //Pass a callback as second param</
     function formatArticles(a) {
       a.forEach(article => {
         let n = document.createElement('div');
+        let categories = document.createElement('ul');
+        categories.classList.add('tags')
+        article.categories.forEach(category => {
+          let tag = document.createElement('li');
+          tag.classList.add('tag');
+          tag.classList.add('tag-rounded');
+          tag.classList.add('tag-blue');
+          tag.innerHTML = category
+          categories.appendChild(tag)
+        })
         n.innerHTML = `
                 <div class="panel">
                   <div class="panel-head">
@@ -157,6 +167,9 @@ mediumFeed.getUserFeed("caden", alertCount); //Pass a callback as second param</
                   <div class="panel-body">
                       <p class="article">${article.content}</p>
                       <a href="${article.link}" target="_blank" class="read-medium button button-primary">👀 Read on Medium 📃</a>
+                      <ul class="tags">
+                      ${categories.innerHTML}
+                      </ul>
                   </div>
               </div>
             `;
