@@ -33,12 +33,10 @@ class MediumFeed {
             contentTag = 'content:encoded'
             break
           case 'topic':
-            contentTag = 'description'
-            break
           case 'tag':
             contentTag = 'description'
-            break
         }
+
         article.content = items[i].getElementsByTagName(
           contentTag
         )[0].childNodes[0].nodeValue
@@ -127,3 +125,5 @@ class MediumArticle {
     this.categories = article.categories || []
   }
 }
+
+export default MediumFeed
