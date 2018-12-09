@@ -44,7 +44,7 @@
                 </p>
                 <p>
                   <b>CDN (latest):</b> <pre><code>https://unpkg.com/medium-feed@latest/dist/medium-feed.min.js</code></pre>
-                  <b>Usage:</b> <pre><code><script type="module" src="https://unpkg.com/medium-feed@latest/dist/medium-feed.min.js"></script></code></pre>
+                  <b>Usage:</b> <pre><code>&lt;script type="module" src="https://unpkg.com/medium-feed@latest/dist/medium-feed.min.js">&lt;/script></code></pre>
                 </p>
                 <p>
                 <em>(Still not in 1.0 release - 🐞 reports & 💬 feedback appreciated!)</em>
@@ -144,6 +144,7 @@ mediumFeed.getUserFeed("caden", alertCount); //Pass a callback as second param</
     </div>
   </body>
   <script>
+    import {MediumFeed} from 'lib/medium-feed.js';
     let _mediumFeed = new MediumFeed({ useProxy: true });
     function refreshArticles() {
       document.getElementById('demo-articles').innerHTML = '';
