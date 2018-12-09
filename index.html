@@ -144,7 +144,7 @@ mediumFeed.getUserFeed("caden", alertCount); //Pass a callback as second param</
     </div>
   </body>
   <script>
-    import {MediumFeed} from 'lib/medium-feed.js';
+    import MediumFeed from 'lib/medium-feed.js';
     let _mediumFeed = new MediumFeed({ useProxy: true });
     function refreshArticles() {
       document.getElementById('demo-articles').innerHTML = '';
