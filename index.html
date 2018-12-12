@@ -146,7 +146,7 @@ mediumFeed.getUserFeed("caden", alertCount); //Pass a callback as second param</
     window.MediumFeed = MediumFeed;
   </script>
   <script>
-    let _mediumFeed = new window.MediumFeed({ useProxy: true });
+    let _mediumFeed = null;
     function refreshArticles() {
       document.getElementById('demo-articles').innerHTML = '';
       let tag = document.getElementById('tag-input').value;
@@ -161,6 +161,7 @@ mediumFeed.getUserFeed("caden", alertCount); //Pass a callback as second param</
     document.onreadystatechange = function () {
         if (document.readyState == "interactive") {
           refreshArticles();
+              _mediumFeed = new MediumFeed({ useProxy: true });
         }
       }
 
