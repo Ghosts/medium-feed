@@ -20,7 +20,6 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.15.0/themes/prism.min.css"
     />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.15.0/prism.min.js"></script>
-    <script src="lib/medium-feed.js" type="text/javascript"></script>
   </head>
   <body>
     <div id="information">
@@ -142,8 +141,12 @@ mediumFeed.getUserFeed("caden", alertCount); //Pass a callback as second param</
       </div>
     </div>
   </body>
+  <script type="module">
+    import MediumFeed from 'https://unpkg.com/medium-feed@latest/dist/medium-feed.min.js';
+    window.MediumFeed = MediumFeed;
+  </script>
   <script>
-    let _mediumFeed = new MediumFeed({ useProxy: true });
+    let _mediumFeed = null;
     function refreshArticles() {
       document.getElementById('demo-articles').innerHTML = '';
       let tag = document.getElementById('tag-input').value;
@@ -156,7 +159,8 @@ mediumFeed.getUserFeed("caden", alertCount); //Pass a callback as second param</
     }
 
     document.onreadystatechange = function () {
-        if (document.readyState == "interactive") {
+        if (document.readyState == "complete") {
+          _mediumFeed = new MediumFeed({ useProxy: true });
           refreshArticles();
         }
       }
