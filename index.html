@@ -160,8 +160,8 @@ mediumFeed.getUserFeed("caden", alertCount); //Pass a callback as second param</
 
     document.onreadystatechange = function () {
         if (document.readyState == "interactive") {
+          _mediumFeed = new MediumFeed({ useProxy: true });
           refreshArticles();
-              _mediumFeed = new MediumFeed({ useProxy: true });
         }
       }
 
