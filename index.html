@@ -143,6 +143,7 @@ mediumFeed.getUserFeed("caden", alertCount); //Pass a callback as second param</
   </body>
   <script type="module">
     import MediumFeed from 'https://unpkg.com/medium-feed@latest/dist/medium-feed.min.js';
+    window.MediumFeed = MediumFeed;
   </script>
   <script>
     let _mediumFeed = new MediumFeed({ useProxy: true });
