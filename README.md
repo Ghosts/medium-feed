@@ -1,6 +1,7 @@
 # Medium-Feed
 
 A simple & small medium-utility to get article objects for any Medium user, topic, or tag.
+Used to easily grab user stories, stories by tag, or stories by topic.
 
 Minified size: **2KB**
 
