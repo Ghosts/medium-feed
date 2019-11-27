@@ -1,11 +1,11 @@
 {
   "name": "medium-feed",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A simple & small medium-utility to get article objects for any Medium user, topic, or tag.",
   "main": "dist/medium-feed.js",
   "unpkg": "dist/medium-feed.min.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "exit 0"
   },
   "repository": "git+https://github.com/ghosts/medium-feed.git",
   "keywords": [
